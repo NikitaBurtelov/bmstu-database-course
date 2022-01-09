@@ -1,8 +1,10 @@
 package bmstu.bd.lab.lab_01.service.contract
 
 import bmstu.bd.lab.lab_01.model.Contract
+import bmstu.bd.lab.lab_01.model.Institution
 import bmstu.bd.lab.lab_01.repository.ContractRepository
 import com.github.javafaker.Faker
+import org.hibernate.Hibernate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
@@ -13,15 +15,6 @@ import kotlin.contracts.contract
 class ContractServiceImpl @Autowired constructor(
     val contractRepository: ContractRepository
 ) : ContractService {
-    var faker = Faker()
-
-    var streetName = faker.address().streetName()
-    var number = faker.address().buildingNumber()
-    var city = faker.address().city()
-    var country = faker.address().country()
-    var firstName = faker.name().firstName()
-    var lastName = faker.name().lastName()
-
     override fun generate() : Contract{
 //        val contract = Contract(
 //            serviceCost = faker

@@ -4,12 +4,12 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "study_group")
-data class Group(
+@Table(name = "study_group", schema = "bmstu")
+class Group(
     @Id
     @Column(name = "id_group")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idGroup : Int,
+    val idGroup : Int? = null,
     @Column(name = "uid")
     val uid: UUID
 )

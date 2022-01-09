@@ -4,16 +4,16 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "institution", schema = "bmstu")
-data class Institution(
+class Institution(
     @Id
-    @Column(name = "id_contract")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idInstitution: Int,
+    @Column(name = "id_institution")
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    val idInstitution: Int? = null,
     @Column(name = "title")
     val title: String,
     @Column(name = "phone")
     val phone: String,
-    @Column(name = "addres")
+    @Column(name = "address")
     val address: String,
     @Column(name = "rating")
     val rating: Int

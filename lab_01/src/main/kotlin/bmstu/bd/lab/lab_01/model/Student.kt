@@ -4,12 +4,12 @@ import java.sql.Date
 import javax.persistence.*
 
 @Entity
-@Table
-data class Student(
+@Table(name = "student", schema = "bmstu")
+class Student(
     @Id
     @Column(name = "id_student")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idStudent: Int,
+    val idStudent: Int? =  null,
     @OneToOne
     @JoinColumn(name = "id_study_group")
     val idStudyGroup: Group,

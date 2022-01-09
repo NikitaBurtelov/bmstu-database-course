@@ -1,11 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val springCoreVersion = "5.3.14"
 plugins {
-	id("org.springframework.boot") version "2.6.2"
+	id("org.springframework.boot") version "2.5.8"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
-	kotlin("jvm") version "1.6.10"
-	kotlin("plugin.spring") version "1.6.10"
+	id ("org.jetbrains.kotlin.plugin.allopen") version "1.5.32"
+	kotlin("jvm") version "1.5.32"
+	kotlin("plugin.spring") version "1.5.32"
+	kotlin("plugin.jpa") version "1.5.32"
+
 }
 
 group = "bmstu.bd.lab"
@@ -14,20 +16,26 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
+	maven { url = uri("https://repo.spring.io/milestone") }
+	maven { url = uri("https://repo.spring.io/snapshot") }
+}
+
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.Embeddable")
+	annotation("javax.persistence.MappedSuperclass")
 }
 
 dependencies {
 	//Spring
-	implementation("org.springframework:spring-core:$springCoreVersion")
 	implementation("org.springframework.data:spring-data-rest-hal-explorer")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.data:spring-data-jpa:2.6.0")
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot
-	implementation("org.springframework.boot:spring-boot:2.6.2")
+	implementation("org.springframework.data:spring-data-jpa")
+	implementation("org.springframework.boot:spring-boot")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 

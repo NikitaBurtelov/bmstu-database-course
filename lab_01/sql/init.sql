@@ -1,7 +1,7 @@
 create table if not exists institution
 (id_institution serial primary key not null,
  title varchar(50) not null,
-    phone nchar(18) not null,
+    phone varchar(50) not null,
     address varchar(100) not null,
     rating int not null
     );
