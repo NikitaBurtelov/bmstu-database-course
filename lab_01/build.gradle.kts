@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val springCoreVersion = "5.3.14"
 plugins {
 	id("org.springframework.boot") version "2.6.2"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -16,18 +17,31 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework:spring-core:5.3.14")
+	//Spring
+	implementation("org.springframework:spring-core:$springCoreVersion")
+	implementation("org.springframework.data:spring-data-rest-hal-explorer")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.data:spring-data-jpa:2.6.0")
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot
+	implementation("org.springframework.boot:spring-boot:2.6.2")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	//Generate
+	implementation("com.github.javafaker:javafaker:1.0.2")
+
+	//Kotlin
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.springframework.data:spring-data-rest-hal-explorer")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	//DataBase
+	implementation("org.postgresql:postgresql:42.3.1")
 	runtimeOnly("com.oracle.database.jdbc:ojdbc8")
 	runtimeOnly("org.postgresql:postgresql")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {

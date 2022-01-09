@@ -1,20 +1,27 @@
 package bmstu.bd.lab.lab_01.model
 
-import org.springframework.data.relational.core.mapping.Column
-import org.springframework.data.relational.core.mapping.Table
 import java.sql.Date
+import javax.persistence.*
 
+@Entity
 @Table
 data class Student(
-    @Column("id_student")
-    val id_student: Int,
-    @Column
-    val id_study_group: Int,
-    @Column
-    val first_name: String,
-    val last_name: String,
+    @Id
+    @Column(name = "id_student")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val idStudent: Int,
+    @OneToOne
+    @JoinColumn(name = "id_study_group")
+    val idStudyGroup: Group,
+    @Column(name = "first_name")
+    val firstName: String,
+    @Column(name = "last_name")
+    val lastName: String,
+    @Column(name = "dob")
     val dob: Date,
+    @Column(name = "sex")
     val sex: String,
+    @Column(name = "email")
     val email: String
 ) {
 }
