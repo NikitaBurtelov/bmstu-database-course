@@ -45,9 +45,11 @@ create table if not exists contract
     service_cost numeric(10,2) not null
     );
 
-create table if not exists teacher_group
-(id_teacher int not null,
- id_group int not null,
- foreign key (id_teacher) references teacher(id_teacher),
+create table if not exists teacher_study_group
+(
+    id_institution serial primary key not null,
+    id_teacher int not null,
+    id_group int not null,
+    foreign key (id_teacher) references teacher(id_teacher),
     foreign key (id_group) references study_group(id_study_group)
-    );
+);
