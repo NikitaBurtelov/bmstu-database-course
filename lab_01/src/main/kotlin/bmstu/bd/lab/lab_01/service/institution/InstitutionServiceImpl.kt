@@ -6,6 +6,7 @@ import com.github.javafaker.Faker
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
+import kotlin.random.Random
 
 @Service
 class InstitutionServiceImpl @Autowired constructor(
@@ -13,17 +14,21 @@ class InstitutionServiceImpl @Autowired constructor(
 ) : InstitutionService {
     private val faker = Faker.instance()
 
-    override fun generate() : Institution {
+    override fun createEntityInstitution() : Institution {
         return Institution(
             title = faker.university().name(),
             phone = faker.phoneNumber().phoneNumber(),
             address = faker.address().city(),
-            rating = 1
+            rating = Random.nextInt(1, 100)
         )
     }
 
-    override fun generate(count: Int) : LinkedList<Institution> {
-        TODO("Not yet implemented")
+    override fun createEntityInstitution(count: Int) : LinkedList<Institution> {
+        val entities = LinkedList<Institution>()
+
+        for (i in 0..count) entities.add(createEntityInstitution())
+
+        return entities
     }
 
     override fun saveDataBase(institution: Institution) {
@@ -31,7 +36,7 @@ class InstitutionServiceImpl @Autowired constructor(
     }
 
     override fun saveDataBase(institution: LinkedList<Institution>) {
-        TODO("Not yet implemented")
+        institutionRepository.saveAll(institution)
     }
 
     override fun saveCSV(path: String) {

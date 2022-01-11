@@ -2,7 +2,6 @@ package bmstu.bd.lab.lab_01.model
 
 import javax.persistence.*
 import org.postgresql.util.PGInterval
-import java.lang.reflect.Constructor
 import java.sql.Date
 
 @Entity

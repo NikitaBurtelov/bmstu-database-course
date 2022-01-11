@@ -12,7 +12,7 @@ class Student(
     val idStudent: Int? =  null,
     @OneToOne
     @JoinColumn(name = "id_study_group")
-    val idStudyGroup: Group,
+    var idStudyGroup: Group?,
     @Column(name = "first_name")
     val firstName: String,
     @Column(name = "last_name")
