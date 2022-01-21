@@ -50,6 +50,9 @@ dependencies {
 	implementation("org.postgresql:postgresql:42.3.1")
 	runtimeOnly("com.oracle.database.jdbc:ojdbc8")
 	runtimeOnly("org.postgresql:postgresql")
+
+	//Log
+	implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
 }
 
 tasks.withType<KotlinCompile> {
