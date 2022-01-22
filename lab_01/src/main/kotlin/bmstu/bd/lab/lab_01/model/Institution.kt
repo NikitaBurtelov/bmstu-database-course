@@ -6,7 +6,7 @@ import javax.persistence.*
 @Table(name = "institution", schema = "bmstu")
 class Institution(
     @Id
-    @Column(name = "id_institution")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.TABLE)
     val idInstitution: Int? = null,
     @Column(name = "title")
@@ -17,4 +17,8 @@ class Institution(
     val address: String,
     @Column(name = "rating")
     val rating: Int
-)
+): Model {
+    fun getTitle(): Int? {
+        return this.idInstitution
+    }
+}

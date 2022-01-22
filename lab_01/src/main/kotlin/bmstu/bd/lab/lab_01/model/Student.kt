@@ -7,10 +7,10 @@ import javax.persistence.*
 @Table(name = "student", schema = "bmstu")
 class Student(
     @Id
-    @Column(name = "id_student")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val idStudent: Int? =  null,
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_study_group")
     var idStudyGroup: Group?,
     @Column(name = "first_name")
@@ -23,5 +23,4 @@ class Student(
     val sex: String,
     @Column(name = "email")
     val email: String
-) {
-}
+): Model

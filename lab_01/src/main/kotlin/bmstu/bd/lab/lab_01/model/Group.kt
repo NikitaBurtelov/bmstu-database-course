@@ -7,9 +7,9 @@ import javax.persistence.*
 @Table(name = "study_group", schema = "bmstu")
 class Group(
     @Id
-    @Column(name = "id_group")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idGroup : Int? = null,
+    val idGroup: Int? = null,
     @Column(name = "uid")
     val uid: UUID
-)
+): Model

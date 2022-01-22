@@ -1,26 +1,24 @@
 package bmstu.bd.lab.lab_01.model
 
-import javax.persistence.*
-import org.postgresql.util.PGInterval
 import java.sql.Date
+import javax.persistence.*
 
 @Entity
 @Table(name = "contract", schema = "bmstu")
 class Contract(
     @Id
-    @Column(name = "id_contract")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idContract: Int = 0,
-    @JoinColumn(name = "id_institution")
-    @OneToOne
-    val idInstitution: Institution,
+    val idContract: Int? = null,
     @JoinColumn(name = "id_student")
     @OneToOne
     val idStudent: Student,
     @Column(name = "date_of_conclusion")
     val dateOfConclusion: Date,
-    @Column(name = "training_period")
-    val trainingPeriod: PGInterval,
+    @Column(name = "start_of_training")
+    val startOfTraining: Date,
+    @Column(name = "end_of_training")
+    val endOfTraining: Date,
     @Column(name = "service_cost")
-    val serviceCost: Int
-)
+    val serviceCost: Double,
+) : Model

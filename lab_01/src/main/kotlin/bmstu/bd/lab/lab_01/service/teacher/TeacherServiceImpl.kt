@@ -3,16 +3,18 @@ package bmstu.bd.lab.lab_01.service.teacher
 import bmstu.bd.lab.lab_01.model.Institution
 import bmstu.bd.lab.lab_01.model.Teacher
 import bmstu.bd.lab.lab_01.repository.TeacherRepository
+import bmstu.bd.lab.lab_01.utils.fileWriter.CsvFileWriter
 import com.github.javafaker.Faker
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.sql.Date
-import java.util.LinkedList
+import java.util.*
+import kotlin.random.Random
 
 @Service
 class TeacherServiceImpl @Autowired constructor(
-    val teacherRepository: TeacherRepository
-) : TeacherService{
+    private val teacherRepository: TeacherRepository
+) : TeacherService {
     val faker = Faker.instance()
 
     override fun createEntityTeacher(institution: Institution): Teacher {
@@ -27,8 +29,16 @@ class TeacherServiceImpl @Autowired constructor(
         )
     }
 
-    override fun createEntityTeacher(count: Int): LinkedList<Teacher> {
-        TODO("Not yet implemented")
+    override fun createEntityTeacher(institutions: LinkedList<Institution>): LinkedList<Teacher> {
+        val teachers = LinkedList<Teacher>()
+
+        for (institution in institutions) {
+            val count = Random.nextInt(5, 15)
+
+            for (i in 0..count)
+                teachers.add(createEntityTeacher(institution))
+        }
+        return teachers
     }
 
     override fun saveDataBase(teacher: Teacher) {
@@ -36,14 +46,16 @@ class TeacherServiceImpl @Autowired constructor(
     }
 
     override fun saveDataBase(teacher: LinkedList<Teacher>) {
-        TODO("Not yet implemented")
+        teacherRepository.saveAll(teacher)
     }
 
-    override fun saveCSV(path: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun saveCSV() {
-        TODO("Not yet implemented")
+    override fun saveCSV(teachers: LinkedList<Teacher>, cleanDir: Boolean) {
+        CsvFileWriter<Teacher>()
+            .write(
+                teachers,
+                Teacher::class,
+                arrayOf("id", "title", "phone", "address", "rating"),
+                cleanDir
+            )
     }
 }

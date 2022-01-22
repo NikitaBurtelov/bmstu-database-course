@@ -51,6 +51,9 @@ dependencies {
 	runtimeOnly("com.oracle.database.jdbc:ojdbc8")
 	runtimeOnly("org.postgresql:postgresql")
 
+	//CsvWriter
+	implementation("net.sf.supercsv:super-csv:2.4.0")
+
 	//Log
 	implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
 }
@@ -60,6 +63,10 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "11"
 	}
+}
+
+tasks.withType<JavaCompile> {
+	options.compilerArgs.addAll(arrayOf("-parameters", "-Xdoclint:none", "-Xlint:all"))
 }
 
 tasks.withType<Test> {

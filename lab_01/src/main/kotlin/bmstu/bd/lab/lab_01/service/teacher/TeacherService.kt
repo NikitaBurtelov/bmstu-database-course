@@ -6,9 +6,8 @@ import java.util.*
 
 interface TeacherService {
     fun createEntityTeacher(institution: Institution): Teacher
-    fun createEntityTeacher(count: Int): LinkedList<Teacher>
+    fun createEntityTeacher(institutions: LinkedList<Institution>): LinkedList<Teacher>
     fun saveDataBase(teacher: Teacher)
     fun saveDataBase(teacher: LinkedList<Teacher>)
-    fun saveCSV(path: String)
-    fun saveCSV()
+    fun saveCSV(teachers: LinkedList<Teacher>, cleanDir: Boolean = false)
 }

@@ -1,6 +1,5 @@
 package bmstu.bd.lab.lab_01.model
 
-import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -11,9 +10,25 @@ class TeacherStudyGroupKey (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int? = null,
     @JoinColumn(name = "id_teacher")
-    @OneToMany
-    val idTeacher: LinkedList<Teacher>,
-    @JoinColumn(name = "id_study_group")
-    @OneToMany
-    val idGroup: LinkedList<Group>,
-)
+    @ManyToOne
+    var idTeacher: Teacher,
+    @JoinColumn(name = "id_group")
+    @ManyToOne
+    var idGroup: Group,
+): Model {
+    fun group(group: Group) {
+        this.idGroup = group
+    }
+
+    fun group() : Group {
+        return this.idGroup
+    }
+
+    fun teacher(teacher: Teacher) {
+        this.idTeacher = teacher
+    }
+
+    fun teacher(): Group {
+        return this.idGroup
+    }
+}

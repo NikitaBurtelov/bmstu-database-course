@@ -7,7 +7,7 @@ import javax.persistence.*
 @Table(name = "teacher", schema = "bmstu")
 class Teacher(
     @Id
-    @Column(name = "id_teacher")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val idTeacher: Int? = null,
     @JoinColumn(name = "id_institution")
@@ -25,6 +25,4 @@ class Teacher(
     val phone: String,
     @Column(name = "education")
     val education: String
-
-
-)
+): Model
